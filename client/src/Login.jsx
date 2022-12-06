@@ -1,13 +1,20 @@
 import React, { useState } from 'react'
 // import { useNavigate } from 'react-router-dom'
+import Signup from './Signup'
 
 function Login({ setUser }) {
 
     // const navigate = useNavigate()
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [signup, setSignup] = useState(false)
 
     console.log(email)
+    console.log(password)
+
+    function handleSignup() {
+      setSignup(!signup)
+    }
 
     function handleLogIn(e) {
         e.preventDefault()
@@ -16,7 +23,7 @@ function Login({ setUser }) {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({email, password})
+            body: JSON.stringify({ email, password})
         })
         .then(r => {
             if (r.ok) {
@@ -44,7 +51,7 @@ function Login({ setUser }) {
       <div class="ui stacked segment">
         <div class="field">
           <div class="ui left icon input">
-            <i class="user icon"></i>
+            <i class="envelope icon"></i>
             <input onChange={(e) => setEmail(e.target.value)} type="text" name="email" placeholder="E-mail address"/>
           </div>
         </div>
@@ -58,17 +65,14 @@ function Login({ setUser }) {
         onClick={handleLogIn}
         class="ui fluid large teal submit button">Login</div>
       </div>
-
       <div class="ui error message"></div>
-
     </form>
-
     <div class="ui message">
-      New to us? <a href="#">Sign Up</a>
+      New to us? <a onClick={handleSignup} href="#">Sign Up</a>
     </div>
+    {signup ? <Signup signup={signup} setSignup={setSignup}/> : null}
   </div>
 </div>
-
   )
 }
 
