@@ -9,8 +9,8 @@ function Login({ setUser }) {
     const [password, setPassword] = useState("")
     const [signup, setSignup] = useState(false)
 
-    console.log(email)
-    console.log(password)
+    // console.log(email)
+    // console.log(password)
 
     function handleSignup() {
       setSignup(!signup)
@@ -29,7 +29,7 @@ function Login({ setUser }) {
             if (r.ok) {
                 r.json()
                 .then(user => setUser(user))
-                .then(() => console.log("accepted"))
+                .then(() => console.log(email))
                 // .then(navigate("/piano"))
             }
             else {
