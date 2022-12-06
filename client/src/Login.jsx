@@ -23,7 +23,7 @@ function Login({ setUser }) {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ email, password})
+            body: JSON.stringify({ email, password })
         })
         .then(r => {
             if (r.ok) {
@@ -68,7 +68,7 @@ function Login({ setUser }) {
       <div class="ui error message"></div>
     </form>
     <div class="ui message">
-      New to us? <a onClick={handleSignup} href="#">Sign Up</a>
+      New to us? <a onClick={handleSignup} href="#signup">Sign Up</a>
     </div>
     {signup ? <Signup signup={signup} setSignup={setSignup}/> : null}
   </div>
