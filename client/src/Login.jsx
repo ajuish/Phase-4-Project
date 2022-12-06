@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-// import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import Signup from './Signup'
 
-function Login({ setUser }) {
+function Login({ setUser, user }) {
 
-    // const navigate = useNavigate()
+    const navigate = useNavigate()
+
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [signup, setSignup] = useState(false)
@@ -28,9 +29,8 @@ function Login({ setUser }) {
         .then(r => {
             if (r.ok) {
                 r.json()
-                .then(user => setUser(user))
-                .then(() => console.log(email))
-                // .then(navigate("/piano"))
+                .then(data => setUser(data))
+                .then(user ? navigate("/piano", {state: {user: user}}) : null)
             }
             else {
                 console.log("invalid")

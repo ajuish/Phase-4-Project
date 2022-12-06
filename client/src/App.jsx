@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import Login from "./Login";
-import { Route, Routes } from "react-router-dom";
+import { useNavigate, Route, Routes } from "react-router-dom";
 import Piano from "./Piano";
 
 function App() {
 
+  const navigate = useNavigate()
+
   const [user, setUser] = useState(null)
+
   return (
     <>
-    <Login setUser={setUser}/>
       <Routes>
-        {/* <Route path="/login" element={<Login setUser={setUser}/>}/> */}
+        <Route path="/login" element={<Login setUser={setUser} user={user}/>}/>
         <Route path="/piano" element={<Piano/>}/>
       </Routes>
     </>
