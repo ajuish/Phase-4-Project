@@ -9,10 +9,10 @@ function App() {
   return (
     <>
     <Login setUser={setUser}/>
-      {/* <Routes> */}
+      <Routes>
         {/* <Route path="/login" element={<Login setUser={setUser}/>}/> */}
-        {/* <Route path="/piano" element={<Piano/>}/> */}
-      {/* </Routes> */}
+        <Route path="/piano" element={<Piano/>}/>
+      </Routes>
     </>
   )
 }
