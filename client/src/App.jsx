@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import Login from "./Login";
-import { useNavigate, Route, Routes } from "react-router-dom";
-import Piano from "./Piano";
+import { Route, Routes } from "react-router-dom";
+import DisplayPiano from "./DisplayPiano";
 
 function App() {
-
-  const navigate = useNavigate()
 
   const [user, setUser] = useState(null)
 
@@ -13,7 +11,7 @@ function App() {
     <>
       <Routes>
         <Route path="/login" element={<Login setUser={setUser} user={user}/>}/>
-        <Route path="/piano" element={<Piano/>}/>
+        <Route path="/piano" element={<DisplayPiano/>}/>
       </Routes>
     </>
   )
