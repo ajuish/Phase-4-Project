@@ -10,8 +10,7 @@ function Login({ setUser, user }) {
     const [password, setPassword] = useState("")
     const [signup, setSignup] = useState(false)
 
-    // console.log(email)
-    // console.log(password)
+
 
     function handleSignup() {
       setSignup(!signup)
@@ -30,6 +29,7 @@ function Login({ setUser, user }) {
             if (r.ok) {
                 r.json()
                 .then(data => setUser(data))
+                //currently need to click twice in order to set user data and navigate to piano
                 .then(user ? navigate("/piano", {state: {user: user}}) : null)
             }
             else {
