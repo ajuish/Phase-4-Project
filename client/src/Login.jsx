@@ -8,12 +8,9 @@ function Login({ setUser, user }) {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    const [signup, setSignup] = useState(false)
-
-
 
     function handleSignup() {
-      setSignup(!signup)
+      navigate("/signup")
     }
 
     function handleLogIn(e) {
@@ -30,11 +27,10 @@ function Login({ setUser, user }) {
                 r.json()
                 .then(data => setUser(data))
                 //currently need to click twice in order to set user data and navigate to piano
-                .then(user ? navigate("/piano", {state: {user: user}}) : null)
+                .then(user ? navigate("/piano") : null)
             }
             else {
                 console.log("invalid")
-
             }
         })
     }
@@ -68,9 +64,8 @@ function Login({ setUser, user }) {
       <div class="ui error message"></div>
     </form>
     <div class="ui message">
-      New to us? <a onClick={handleSignup} href="#signup">Sign Up</a>
+      New to us? <span onClick={handleSignup}>Sign Up</span>
     </div>
-    {signup ? <Signup signup={signup} setSignup={setSignup}/> : null}
   </div>
 </div>
   )

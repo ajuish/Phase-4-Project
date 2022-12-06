@@ -1,12 +1,12 @@
-import React, {useState} from 'react'
-import {useLocation} from 'react-router-dom'
+import React from 'react'
+// import {useLocation} from 'react-router-dom'
 import { Piano, KeyboardShortcuts, MidiNumbers } from 'react-piano';
 import 'react-piano/dist/styles.css';
 import SoundfontProvider from './SoundfontProvider';
 
-function DisplayPiano() {
-  const location = useLocation()
-  console.log(location.state.user)
+function DisplayPiano( {user} ) {
+  // const location = useLocation()
+  console.log(user)
   const firstNote = MidiNumbers.fromNote('c3');
   const lastNote = MidiNumbers.fromNote('f5');
 
@@ -32,7 +32,7 @@ function DisplayPiano() {
       render={({ isLoading, playNote, stopNote }) => (
         <Piano
           noteRange={noteRange}
-          width={300}
+          width={700}
           playNote={playNote}
           stopNote={stopNote}
           disabled={isLoading}
