@@ -1,7 +1,8 @@
 import React from 'react';
 import _ from 'lodash';
-import { Piano, KeyboardShortcuts, MidiNumbers } from 'react-piano';
+import { KeyboardShortcuts, MidiNumbers } from 'react-piano';
 import 'react-piano/dist/styles.css';
+import Save from './Save';
 
 // import DimensionsProvider from './DimensionsProvider';
 import SoundfontProvider from './SoundfontProvider';
@@ -29,6 +30,7 @@ class PianoMidi extends React.Component {
       currentTime: 0,
       currentEvents: [],
     },
+    songname: "",
   };
 
   constructor(props) {
@@ -100,7 +102,23 @@ class PianoMidi extends React.Component {
     });
   };
 
+  onClickSave = () => {
+    fetch("/savesong",{
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      // notes does not post properly but songs does
+      body: JSON.stringify({notes: this.state.recording.events, name: this.state.songname})
+    })
+  }
+
+  handleChange = e => {
+    this.setState({songname: e.target.value})
+  }
+
   render() {
+    console.log(this.state.recording.events)
     return (
       <div>
         <h1 className="h3">react-piano recording + playback demo</h1>
@@ -127,6 +145,19 @@ class PianoMidi extends React.Component {
           <button onClick={this.onClickPlay}>Play</button>
           <button onClick={this.onClickStop}>Stop</button>
           <button onClick={this.onClickClear}>Clear</button>
+          <button onClick={this.onClickSave}>Save</button>
+          {/* <Save notes={this.state.recording.events} name={this.state.songname}/> */}
+          <div>
+            <form>
+              <input
+                onChange= {this.handleChange}
+                type="text"
+                name="name"
+                placeholder="Enter Song Name"
+              >
+              </input>
+            </form>
+          </div>
         </div>
         <div className="mt-5">
           <strong>Recorded notes</strong>

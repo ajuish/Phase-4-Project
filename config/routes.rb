@@ -12,4 +12,8 @@ Rails.application.routes.draw do
   post '/login', to: "sessions#create"
   delete '/logout', to: "sessions#destroy"
 
+  # song routes
+  post '/savesong', to: "songs#create"
+  delete '/deletesong', to: "songs#destroy"
+
 end
