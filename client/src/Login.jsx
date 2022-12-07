@@ -14,7 +14,7 @@ function Login() {
       if (currentUser) {
        navigate("/piano")
       } 
-    },[])
+    },[currentUser, navigate])
 
     function handleSignup() {
       navigate("/signup")

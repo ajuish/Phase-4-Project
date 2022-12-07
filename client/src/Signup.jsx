@@ -16,7 +16,7 @@ function Signup({ user, setUser }) {
     if (currentUser) {
      navigate("/piano")
     } 
-  },[])
+  },[currentUser, navigate])
 
   console.log(userEmail);
   console.log(userPassword);
