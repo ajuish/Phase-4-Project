@@ -1,13 +1,20 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Signup from './Signup'
 
-function Login({ setUser, user }) {
+function Login() {
 
     const navigate = useNavigate()
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+
+    const currentUser = sessionStorage.getItem("user_id")
+
+    useEffect(() => {
+      if (currentUser) {
+       navigate("/piano")
+      } 
+    },[])
 
     function handleSignup() {
       navigate("/signup")
@@ -25,9 +32,8 @@ function Login({ setUser, user }) {
         .then(r => {
             if (r.ok) {
                 r.json()
-                .then(data => setUser(data))
-                //currently need to click twice in order to set user data and navigate to piano
-                .then(user ? navigate("/piano") : null)
+                .then(data => window.sessionStorage.setItem("user_id", data.id))
+                .then(() => navigate("/piano"))
             }
             else {
                 console.log("invalid")
@@ -36,34 +42,34 @@ function Login({ setUser, user }) {
     }
 
   return (
-    <div class="ui middle aligned center aligned grid">
-  <div class="column">
-    <h2 class="ui teal image header">
-      <div class="content">
+    <div className ="ui middle aligned center aligned grid">
+  <div className ="column">
+    <h2 className ="ui teal image header">
+      <div className ="content">
         Log-in to your account
       </div>
     </h2>
-    <form class="ui large form">
-      <div class="ui stacked segment">
-        <div class="field">
-          <div class="ui left icon input">
-            <i class="envelope icon"></i>
+    <form className ="ui large form">
+      <div className ="ui stacked segment">
+        <div className ="field">
+          <div className ="ui left icon input">
+            <i className ="envelope icon"></i>
             <input onChange={(e) => setEmail(e.target.value)} type="text" name="email" placeholder="E-mail address"/>
           </div>
         </div>
-        <div class="field">
-          <div class="ui left icon input">
-            <i class="lock icon"></i>
+        <div className ="field">
+          <div className ="ui left icon input">
+            <i className ="lock icon"></i>
             <input onChange={(e) => setPassword(e.target.value)} type="password" name="password" placeholder="Password"/>
           </div>
         </div>
         <div 
         onClick={handleLogIn}
-        class="ui fluid large teal submit button">Login</div>
+        className ="ui fluid large teal submit button">Login</div>
       </div>
-      <div class="ui error message"></div>
+      <div className ="ui error message"></div>
     </form>
-    <div class="ui message">
+    <div className ="ui message">
       New to us? <span onClick={handleSignup}>Sign Up</span>
     </div>
   </div>

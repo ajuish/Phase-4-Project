@@ -1,12 +1,22 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 // import {useLocation} from 'react-router-dom'
 import { Piano, KeyboardShortcuts, MidiNumbers } from 'react-piano';
 import 'react-piano/dist/styles.css';
+import { useNavigate } from 'react-router-dom';
 import SoundfontProvider from './SoundfontProvider';
 
-function DisplayPiano( {user} ) {
+function DisplayPiano() {
+
+  const navigate = useNavigate()
+  const currentUser = sessionStorage.getItem("user_id")
+
+  useEffect(() => {
+    if (currentUser == null) {
+     navigate("/login")
+    } 
+  },[])
+  
   // const location = useLocation()
-  console.log(user)
   const firstNote = MidiNumbers.fromNote('c3');
   const lastNote = MidiNumbers.fromNote('f5');
 

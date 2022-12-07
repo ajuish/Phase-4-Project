@@ -1,13 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Signup({ user, setUser }) {
 
   const navigate = useNavigate()
+  
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [userName, setUserName] = useState("");
   // const [confirmPw, setConfirmPw] = useState("")
+
+  const currentUser = sessionStorage.getItem("user_id")
+
+  useEffect(() => {
+    if (currentUser) {
+     navigate("/piano")
+    } 
+  },[])
 
   console.log(userEmail);
   console.log(userPassword);
@@ -26,8 +35,8 @@ function Signup({ user, setUser }) {
         .then(r => {
             if (r.ok) {
                 r.json()
-                .then(data => setUser(data))
-                .then(user ? navigate("/piano") : null)
+                .then(data => window.sessionStorage.setItem("user_id", data.id))
+                .then(() => navigate("/piano"))
             }
             else {
                 console.log("invalid")
@@ -38,12 +47,12 @@ function Signup({ user, setUser }) {
 
   return (
     <>
-      <form class="ui large form">
-        <div class="ui stacked segment">
-          <div class="field">
+      <form className="ui large form">
+        <div className="ui stacked segment">
+          <div className="field">
             <label>Add your e-mail address!</label>
-            <div class="ui left icon input">
-              <i class="envelope icon"></i>
+            <div className="ui left icon input">
+              <i className="envelope icon"></i>
               <input
                 onChange={(e) => setUserEmail(e.target.value)}
                 type="text"
@@ -52,10 +61,10 @@ function Signup({ user, setUser }) {
               />
             </div>
           </div>
-          <div class="field">
+          <div className="field">
             <label>Create your password!</label>
-            <div class="ui left icon input">
-              <i class="lock icon"></i>
+            <div className="ui left icon input">
+              <i className="lock icon"></i>
               <input
                 onChange={(e) => setUserPassword(e.target.value)}
                 type="text"
@@ -64,10 +73,10 @@ function Signup({ user, setUser }) {
               />
             </div>
           </div>
-          {/* <div class="field">
+          {/* <div className="field">
             <label>Confirm your password!</label>
-            <div class="ui left icon input">
-              <i class="lock icon"></i>
+            <div className="ui left icon input">
+              <i className="lock icon"></i>
               <input
                 onChange={(e) => setConfirmPw(e.target.value)}
                 type="text"
@@ -76,10 +85,10 @@ function Signup({ user, setUser }) {
               />
             </div>
           </div> */}
-          <div class="field">
+          <div className="field">
             <label>Create your user name!</label>
-            <div class="ui left icon input">
-              <i class="user icon"></i>
+            <div className="ui left icon input">
+              <i className="user icon"></i>
               <input
                 onChange={(e) => setUserName(e.target.value)}
                 type="text"
@@ -88,7 +97,7 @@ function Signup({ user, setUser }) {
               />
             </div>
           </div>
-          <div onClick={signupClick} class="ui fluid large teal submit button">Submit</div>
+          <div onClick={signupClick} className="ui fluid large teal submit button">Submit</div>
         </div>
       </form>
     </>
