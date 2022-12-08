@@ -70,7 +70,7 @@ function Login() {
       <div className ="ui error message"></div>
     </form>
     <div className ="ui message">
-      New to us? <span onClick={handleSignup}>Sign Up</span>
+      New to us? <a onClick={handleSignup}>Sign Up</a>
     </div>
   </div>
 </div>

@@ -1,0 +1,11 @@
+body {
+    background-color: #2dc1bc;
+   }
+
+.piano {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    padding-bottom: 2%;
+}
