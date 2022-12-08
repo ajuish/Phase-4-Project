@@ -2,6 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 import { KeyboardShortcuts, MidiNumbers } from 'react-piano';
 import 'react-piano/dist/styles.css'
+import Profile from './Profile'
 
 // import DimensionsProvider from './DimensionsProvider';
 import SoundfontProvider from './SoundfontProvider';
@@ -121,7 +122,7 @@ class PianoMidi extends React.Component {
   }
 
   render() {
-    console.log(sessionStorage.getItem("user_id"))
+    console.log(this.state.recording.events)
     return (
       <div>
         <h1 className="h3">react-piano recording + playback demo</h1>
@@ -165,6 +166,7 @@ class PianoMidi extends React.Component {
           <strong>Recorded notes</strong>
           <div>{JSON.stringify(this.state.recording.events)}</div>
         </div>
+        <Profile setRecording={this.setRecording} onPlaySong={this.onClickPlay}/>
       </div>
     );
   }

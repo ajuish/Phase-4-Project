@@ -5,7 +5,12 @@ class SongsController < ApplicationController
     end
 
     def create
-        song = Song.create(song_params)
+        song = Song.new(
+            name: song_params[:name], 
+            user_id: song_params[:user_id],
+            notes: JSON.parse(song_params[:notes].to_json)
+            )
+        song.save
         render json: song, status: :created
     end
 
