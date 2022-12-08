@@ -18,7 +18,7 @@ function navPiano() {
 }
 
 function navHome() {
-  navigate("/home")
+  navigate("/")
 }
   return (
     <>
