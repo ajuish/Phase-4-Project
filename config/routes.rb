@@ -13,8 +13,9 @@ Rails.application.routes.draw do
   delete '/logout', to: "sessions#destroy"
 
   # song routes
-  get '/songs', to: "songs#index"
-  post '/savesong', to: "songs#create"
-  delete '/deletesong', to: "songs#destroy"
+  resources :songs
+  # get '/songs', to: "songs#index"
+  # post '/savesong', to: "songs#create"
+  # post '/updatesong', to: "songs#update"
 
 end
