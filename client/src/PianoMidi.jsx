@@ -103,7 +103,7 @@ class PianoMidi extends React.Component {
   };
 
   onClickSave = () => {
-    fetch("/savesong",{
+    fetch("/songs",{
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -122,7 +122,6 @@ class PianoMidi extends React.Component {
   }
 
   render() {
-    console.log(this.state.recording.events)
     return (
       <div>
         <h1 className="h3">react-piano recording + playback demo</h1>
@@ -166,7 +165,7 @@ class PianoMidi extends React.Component {
           <strong>Recorded notes</strong>
           <div>{JSON.stringify(this.state.recording.events)}</div>
         </div>
-        <Profile setRecording={this.setRecording} onPlaySong={this.onClickPlay}/>
+        {/* <Profile setRecording={this.setRecording} onPlaySong={this.onClickPlay}/> */}
       </div>
     );
   }

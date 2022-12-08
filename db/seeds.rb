@@ -14,8 +14,5 @@ User.create(username: 'Nils', password: "word", email: "nils@gmail.com")
 User.create(username: 'Adam', password: "pass", email: "adam@gmail.com" )
 User.create(username: 'Alex', password: "password", email:"alex@gmail.com")
 
-Song.create(name: 'Abcd 1234', notes: ["hey", 345], user_id: 1)
-Song.create(name: 'Hello world', notes: ["Abcd", 1234], user_id: 2)
-
 Comment.create(description: 'Fantastic', user_id: 1, song_id: 2)
 Comment.create(description: 'Terrible', user_id: 2, song_id:1)
