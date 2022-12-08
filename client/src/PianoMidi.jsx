@@ -1,8 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 import { KeyboardShortcuts, MidiNumbers } from 'react-piano';
-import 'react-piano/dist/styles.css';
-import Save from './Save';
+import 'react-piano/dist/styles.css'
 
 // import DimensionsProvider from './DimensionsProvider';
 import SoundfontProvider from './SoundfontProvider';
@@ -109,7 +108,11 @@ class PianoMidi extends React.Component {
         "Content-Type": "application/json"
       },
       // notes does not post properly but songs does
-      body: JSON.stringify({notes: this.state.recording.events, name: this.state.songname})
+      body: JSON.stringify({
+        notes: this.state.recording.events, 
+        name: this.state.songname,
+        user_id: sessionStorage.getItem("user_id")
+      })
     })
   }
 
@@ -118,7 +121,7 @@ class PianoMidi extends React.Component {
   }
 
   render() {
-    console.log(this.state.recording.events)
+    console.log(sessionStorage.getItem("user_id"))
     return (
       <div>
         <h1 className="h3">react-piano recording + playback demo</h1>
@@ -146,7 +149,6 @@ class PianoMidi extends React.Component {
           <button onClick={this.onClickStop}>Stop</button>
           <button onClick={this.onClickClear}>Clear</button>
           <button onClick={this.onClickSave}>Save</button>
-          {/* <Save notes={this.state.recording.events} name={this.state.songname}/> */}
           <div>
             <form>
               <input

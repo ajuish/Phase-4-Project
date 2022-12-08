@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-    has_many :comments
-    has_many :songs, through: :comments
+    has_many :songs
+    has_many :comments, through: :songs
 
     has_secure_password
 end
