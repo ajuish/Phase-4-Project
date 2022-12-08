@@ -3,14 +3,14 @@ import Login from "./Login";
 import { Route, Routes } from "react-router-dom";
 import DisplayPiano from "./DisplayPiano";
 import Signup from "./Signup";
-import NavBar from "./NavBar";
+import Home from "./Home"
 
 function App() {
 
   return (
     <>
       <Routes>
-        <Route path="/" element={<NavBar/>}/>
+        <Route path="/home" element={<Home/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/piano" element={<DisplayPiano/>}/>
         <Route path="/signup" element={<Signup/>}/>

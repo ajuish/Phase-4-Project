@@ -1,6 +1,5 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import Home from './Home'
 
 function NavBar() {
 
@@ -18,22 +17,22 @@ function navPiano() {
     navigate("/piano")
 }
 
+function navHome() {
+  navigate("/home")
+}
   return (
     <>
     <div class="ui secondary menu">
-    <a class="item">
+      <h1 className='title'>React Piano</h1>
+    <div class="right menu">
+      <div class="item">
+      </div>
+      <a onClick={navHome} class="item">
       Home
     </a>
     <a onClick={navPiano} class="item">
       Piano
     </a>
-    <div class="right menu">
-      <div class="item">
-        <div class="ui icon input">
-          <input type="text" placeholder="Search..."/>
-          <i class="search link icon"></i>
-        </div>
-      </div>
       <a onClick={navLogin} class="item">
         Login
       </a>
@@ -42,7 +41,6 @@ function navPiano() {
       </a>
     </div>
   </div>
-  <Home/>
   </>
   )
 }
