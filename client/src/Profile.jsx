@@ -40,7 +40,7 @@ function Profile({onPlaySong, setRecording}){
             if (song.user_id === Number(sessionStorage.getItem("user_id")))
                 return (
                     <div className="songcards">
-                        <div class="ui card">
+                        <div class="ui cards">
                             <div class="card">
                                 <div class="content">
                                     <h3 class="header">{song.name}</h3>

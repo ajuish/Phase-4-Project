@@ -7,6 +7,7 @@ function Login() {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [errors, setErrors] = useState("")
 
     const currentUser = sessionStorage.getItem("user_id")
 
@@ -36,7 +37,7 @@ function Login() {
                 .then(() => navigate("/piano"))
             }
             else {
-                console.log("invalid")
+                setErrors("Invalid username or password")
             }
         })
     }
@@ -72,6 +73,7 @@ function Login() {
     <div className ="ui message">
       New to us? <a onClick={handleSignup}>Sign Up</a>
     </div>
+      <h3 className="error">{errors}</h3>
   </div>
 </div>
   )
