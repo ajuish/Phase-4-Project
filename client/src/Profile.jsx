@@ -3,7 +3,7 @@ import {useNavigate} from 'react-router-dom'
 import {Card} from 'semantic-ui-react'
 import EditSongName from './EditSongName'
 
-function Profile({onPlaySong, setRecording, songs, setSongs}){
+function Profile({onPlaySong, setRecording, songs, setSongs, deleteSingleSong, editSong}){
 
     // const [songs, setSongs] = useState([])
     const navigate = useNavigate()
@@ -38,9 +38,10 @@ function Profile({onPlaySong, setRecording, songs, setSongs}){
         await fetch(`/songs/${id}`, {
                 method: 'DELETE'
               })
-        await fetch('/songs')
-              .then(resp => resp.json())
-              .then(data => setSongs(data))
+        await deleteSingleSong(id)
+            //     fetch('/songs')
+            //   .then(resp => resp.json())
+            //   .then(data => setSongs(data))
     }
 
     const displaySongs = songs ?
@@ -69,7 +70,7 @@ function Profile({onPlaySong, setRecording, songs, setSongs}){
                             </button>
                             <br></br>
                             <br></br>
-                            {showForm ? <EditSongName setSongs={setSongs} song={song}/> : null}
+                            {showForm ? <EditSongName editSong={editSong} song={song}/> : null}
                         </Card.Content>
                     </Card>
                     )

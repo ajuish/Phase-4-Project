@@ -31,10 +31,19 @@ class PianoMidi extends React.Component {
       currentEvents: [],
     },
     songname: "",
+    deleteSong: function(id){
+                  const filterSongs = this.state.songs.filter(song => song.id != id)
+                  this.setState({songs: filterSongs})
+                },
     songs:[],
-    // setSongs: function(song){
-    //             this.setState(({songs})=>({songs: {...songs, song}}))
-    //           }
+    setSongs: function(song){
+               this.setState({songs: [...this.state.songs, song]})
+              },
+    editSong: function(updatedSong){
+                this.setState({songs: this.state.songs.map(
+                    song => song.id === updatedSong.id ? updatedSong : song
+                )})
+              }
   };
 
   constructor(props) {
@@ -125,8 +134,8 @@ class PianoMidi extends React.Component {
         user_id: sessionStorage.getItem("user_id")
       })  
     })
-    .then(resp => resp.json)
-    .then((song) => {this.setState({songs: [...this.state.songs, song]})})
+    .then(resp => resp.json())
+    .then((song) => this.setState({songs: [...this.state.songs, song]}))
     this.setState({songname:""})
   }
 
@@ -180,8 +189,13 @@ class PianoMidi extends React.Component {
           <strong>Recorded notes</strong>
           <div>{JSON.stringify(this.state.recording.events)}</div>
         </div>
-        <Profile setRecording={this.setRecording} onPlaySong={this.onClickPlay} songs={this.state.songs}
-        // setSongs={this.state.setSongs.bind(this)}
+        <Profile 
+          setRecording={this.setRecording} 
+          onPlaySong={this.onClickPlay} 
+          songs={this.state.songs}
+          setSongs={this.state.setSongs.bind(this)}
+          deleteSingleSong={this.state.deleteSong.bind(this)}
+          editSong={this.state.editSong.bind(this)}
         />
       </div>
     );

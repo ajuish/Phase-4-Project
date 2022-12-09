@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 
-function EditSongName({song, setSongs}) {
+function EditSongName({song, editSong}) {
 
     const [newName, setNewName] = useState("")
 
@@ -13,10 +13,8 @@ function EditSongName({song, setSongs}) {
             },
             body: JSON.stringify({name: newName})
         })
-        .then((r) => r.json())
-        await fetch('/songs')
-              .then(resp => resp.json())
-              .then(data => setSongs(data))
+            .then((r) => r.json())
+            .then(data => editSong(data))
         await setNewName("")
     }
     console.log(newName)
