@@ -39,20 +39,34 @@ function Profile({onPlaySong, setRecording}){
         songs.map(song => {
             if (song.user_id === Number(sessionStorage.getItem("user_id")))
                 return (
-                    <div>
-                        <button 
-                            key={song.name} 
-                            // onClick={()=> {playSong(song)}}
-                        >
-                            {song.name}
-                        </button>
-                        <button 
-                            key={song.name} 
-                            onClick={()=> {deleteSong(song.id)}}
-                        >
-                            delete {song.name}
-                        </button>
-                    </div>
+                    <div className="songcards">
+                        <div class="ui card">
+                            <div class="card">
+                                <div class="content">
+                                    <h3 class="header">{song.name}</h3>
+                                    <button 
+                                        onClick={()=>{deleteSong(song.id)}}
+                                    >
+                                        Delete Song
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                     </div>
+                    // <div>
+                    //     <button 
+                    //         key={song.name} 
+                    //         // onClick={()=> {playSong(song)}}
+                    //     >
+                    //         {song.name}
+                    //     </button>
+                    //     <button 
+                    //         key={song.name} 
+                    //         onClick={()=> {deleteSong(song.id)}}
+                    //     >
+                    //         delete {song.name}
+                    //     </button>
+                    // </div>
                     )
             else
                 return null   

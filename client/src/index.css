@@ -34,3 +34,8 @@ body {
 .mt-5 {
     text-align:center;
 }
+
+.songcards {
+    text-align:center;
+    padding: 10px;
+}
