@@ -20,6 +20,11 @@ function navPiano() {
 function navHome() {
   navigate("/")
 }
+
+function navLogout(){
+  sessionStorage.clear()
+  navigate("/")
+}
   return (
     <>
     <div class="ui secondary menu">
@@ -38,6 +43,9 @@ function navHome() {
       </a>
       <a onClick={navSignup} class="item">
         Signup
+      </a>
+      <a onClick={navLogout} class="item">
+        Logout
       </a>
     </div>
   </div>
