@@ -25,19 +25,25 @@ function navLogout(){
   sessionStorage.clear()
   navigate("/")
 }
+
+function navProfile(){
+  navigate('/profile')
+}
+
   return (
     <>
     <div class="ui secondary menu">
       <h1 className='title'>React Piano</h1>
     <div class="right menu">
-      <div class="item">
-      </div>
       <a onClick={navHome} class="item">
-      Home
-    </a>
-    <a onClick={navPiano} class="item">
-      Piano
-    </a>
+        Home
+      </a>
+      <a onClick={navPiano} class="item">
+        Piano
+      </a>
+      <a onClick={navProfile} class="item">
+        Profile
+      </a>
       <a onClick={navLogin} class="item">
         Login
       </a>

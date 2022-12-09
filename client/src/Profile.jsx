@@ -1,8 +1,18 @@
 import React, {useEffect, useState} from 'react'
+import {useNavigate} from 'react-router-dom'
 
 function Profile({onPlaySong, setRecording}){
 
     const [songs, setSongs] = useState([])
+    const navigate = useNavigate()
+
+    const currentUser = sessionStorage.getItem("user_id")
+
+    useEffect(() => {
+      if (currentUser==null) {
+       navigate("/login")
+      } 
+    },[currentUser, navigate])
 
     useEffect(()=> {
         fetch('/songs')
