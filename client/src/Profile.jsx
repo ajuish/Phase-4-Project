@@ -25,14 +25,14 @@ function Profile({onPlaySong, setRecording}){
     useEffect(()=> {
         fetch('/songs')
         .then(resp => resp.json())
-        // .then(data => data.map((datum) => console.log(datum.notes)))
         .then(songdata => setSongs(songdata))
     },[])
 
-    // async function playSong(song) {
-    //     await setRecording({events: song.notes})
-    //     await onPlaySong()
-    //  }
+    async function playSong(song) {
+        const formatNotes =  song.notes.map(note => note.replaceAll("=>", ":")).map(JSON.parse)
+        await setRecording({events: formatNotes})
+        await onPlaySong()
+     }
 
     async function deleteSong(id){
         await fetch(`/songs/${id}`, {
@@ -54,46 +54,24 @@ function Profile({onPlaySong, setRecording}){
                                 Map Comments Here
                             </Card.Description>
                             <button 
+                                key={song.name} 
+                                onClick={()=> {playSong(song)}}
+                            >
+                                Play
+                            </button>
+                            <button 
                                 onClick={()=>{deleteSong(song.id)}}
                             >
-                                Delete Song
+                                Delete
                             </button>
                             <button onClick={handleShowEdit}>
-                                Edit Song Name
+                                Edit Name
                             </button>
                             <br></br>
                             <br></br>
                             {showForm ? <EditSongName setSongs={setSongs} song={song}/> : null}
                         </Card.Content>
                     </Card>
-                    // <div className="songcards">
-                    //     <div class="ui cards">
-                    //         <div class="card">
-                    //             <div class="content">
-                    //                 <h3 class="header">{song.name}</h3>
-                                    // <button 
-                                    //     onClick={()=>{deleteSong(song.id)}}
-                                    // >
-                                    //     Delete Song
-                                    // </button>
-                    //             </div>
-                    //         </div>
-                    //     </div>
-                    //  </div>
-                    // <div>
-                    //     <button 
-                    //         key={song.name} 
-                    //         // onClick={()=> {playSong(song)}}
-                    //     >
-                    //         {song.name}
-                    //     </button>
-                    //     <button 
-                    //         key={song.name} 
-                    //         onClick={()=> {deleteSong(song.id)}}
-                    //     >
-                    //         delete {song.name}
-                    //     </button>
-                    // </div>
                     )
             else
                 return null   
@@ -101,7 +79,7 @@ function Profile({onPlaySong, setRecording}){
 
     return(
         <>
-            <Card.Group itemPerRow={4}>
+            <Card.Group itemsPerRow={4}>
                 {displaySongs}
             </Card.Group>
         </>
