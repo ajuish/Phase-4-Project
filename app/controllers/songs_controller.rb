@@ -26,6 +26,17 @@ class SongsController < ApplicationController
         head :no_content
     end
 
+    def update
+        song = Song.find(params[:id])
+        song.update(song_params) 
+        render json: song, status: :accepted
+    end
+
+    def show
+        song = Song.find(params[:id])
+        render json: song, status: :ok
+    end
+
     private
 
     def song_params

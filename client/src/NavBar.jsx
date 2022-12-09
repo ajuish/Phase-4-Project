@@ -9,10 +9,6 @@ function navLogin() {
     navigate("/login")
 }
 
-function navSignup() {
-    navigate("/signup")
-}
-
 function navPiano() {
     navigate("/piano")
 }
@@ -47,9 +43,9 @@ function navProfile(){
       <a onClick={navLogin} class="item">
         Login
       </a>
-      <a onClick={navSignup} class="item">
+      {/* <a onClick={navSignup} class="item">
         Signup
-      </a>
+      </a> */}
       <a onClick={navLogout} class="item">
         Logout
       </a>

@@ -1,13 +1,20 @@
 import React, {useEffect, useState} from 'react'
 import {useNavigate} from 'react-router-dom'
 import {Card} from 'semantic-ui-react'
+import EditSongName from './EditSongName'
 
 function Profile({onPlaySong, setRecording}){
 
     const [songs, setSongs] = useState([])
     const navigate = useNavigate()
 
+    const [showForm, setShowForm] = useState(false)
+
     const currentUser = sessionStorage.getItem("user_id")
+
+    function handleShowEdit() {
+        setShowForm(!showForm)
+    }
 
     useEffect(() => {
       if (currentUser==null) {
@@ -51,6 +58,12 @@ function Profile({onPlaySong, setRecording}){
                             >
                                 Delete Song
                             </button>
+                            <button onClick={handleShowEdit}>
+                                Edit Song Name
+                            </button>
+                            <br></br>
+                            <br></br>
+                            {showForm ? <EditSongName setSongs={setSongs} song={song}/> : null}
                         </Card.Content>
                     </Card>
                     // <div className="songcards">
