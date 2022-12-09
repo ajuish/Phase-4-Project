@@ -3,9 +3,9 @@ import {useNavigate} from 'react-router-dom'
 import {Card} from 'semantic-ui-react'
 import EditSongName from './EditSongName'
 
-function Profile({onPlaySong, setRecording}){
+function Profile({onPlaySong, setRecording, songs, setSongs}){
 
-    const [songs, setSongs] = useState([])
+    // const [songs, setSongs] = useState([])
     const navigate = useNavigate()
 
     const [showForm, setShowForm] = useState(false)
@@ -22,11 +22,11 @@ function Profile({onPlaySong, setRecording}){
       } 
     },[currentUser, navigate])
 
-    useEffect(()=> {
-        fetch('/songs')
-        .then(resp => resp.json())
-        .then(songdata => setSongs(songdata))
-    },[])
+    // useEffect(()=> {
+    //     fetch('/songs')
+    //     .then(resp => resp.json())
+    //     .then(songdata => setSongs(songdata))
+    // },[songs])
 
     async function playSong(song) {
         const formatNotes =  song.notes.map(note => note.replaceAll("=>", ":")).map(JSON.parse)

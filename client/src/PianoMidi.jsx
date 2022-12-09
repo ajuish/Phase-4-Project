@@ -31,12 +31,22 @@ class PianoMidi extends React.Component {
       currentEvents: [],
     },
     songname: "",
+    songs:[],
+    // setSongs: function(song){
+    //             this.setState(({songs})=>({songs: {...songs, song}}))
+    //           }
   };
 
   constructor(props) {
     super(props);
 
     this.scheduledEvents = [];
+  }
+
+  componentDidMount() {
+    fetch('/songs')
+    .then(resp => resp.json())
+    .then(data => this.setState({songs: data}))
   }
 
   getRecordingEndTime = () => {
@@ -113,8 +123,10 @@ class PianoMidi extends React.Component {
         notes: this.state.recording.events, 
         name: this.state.songname,
         user_id: sessionStorage.getItem("user_id")
-      })
+      })  
     })
+    .then(resp => resp.json)
+    .then((song) => {this.setState({songs: [...this.state.songs, song]})})
     this.setState({songname:""})
   }
 
@@ -168,7 +180,9 @@ class PianoMidi extends React.Component {
           <strong>Recorded notes</strong>
           <div>{JSON.stringify(this.state.recording.events)}</div>
         </div>
-        <Profile setRecording={this.setRecording} onPlaySong={this.onClickPlay}/>
+        <Profile setRecording={this.setRecording} onPlaySong={this.onClickPlay} songs={this.state.songs}
+        // setSongs={this.state.setSongs.bind(this)}
+        />
       </div>
     );
   }
