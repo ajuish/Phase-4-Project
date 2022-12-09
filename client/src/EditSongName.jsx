@@ -17,6 +17,7 @@ function EditSongName({song, setSongs}) {
         await fetch('/songs')
               .then(resp => resp.json())
               .then(data => setSongs(data))
+        await setNewName("")
     }
     console.log(newName)
   return (
@@ -24,6 +25,7 @@ function EditSongName({song, setSongs}) {
         <form>
         <input
             onChange={(e) => setNewName(e.target.value)}
+            value={newName}
             className="edit-name"
             type="text"
             placeholder="Edit Song Name"

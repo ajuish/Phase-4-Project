@@ -115,6 +115,7 @@ class PianoMidi extends React.Component {
         user_id: sessionStorage.getItem("user_id")
       })
     })
+    this.setState({songname:""})
   }
 
   handleChange = e => {
@@ -154,6 +155,7 @@ class PianoMidi extends React.Component {
             <form>
               <input
                 onChange= {this.handleChange}
+                value = {this.state.songname}
                 type="text"
                 name="name"
                 placeholder="Enter Song Name"
