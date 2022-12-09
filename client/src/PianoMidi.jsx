@@ -125,7 +125,7 @@ class PianoMidi extends React.Component {
     return (
       <div>
         <h1 className="h3">react-piano recording + playback demo</h1>
-        <div className="mt-5">
+        <div className="piano">
           <SoundfontProvider
             instrumentName="acoustic_grand_piano"
             audioContext={audioContext}
@@ -135,7 +135,7 @@ class PianoMidi extends React.Component {
                 recording={this.state.recording}
                 setRecording={this.setRecording}
                 noteRange={noteRange}
-                width={300}
+                width={800}
                 playNote={playNote}
                 stopNote={stopNote}
                 disabled={isLoading}

@@ -9,3 +9,28 @@ body {
     width: 40%;
     padding-bottom: 2%;
 }
+
+.title {
+   margin: 0;
+   position: absolute;
+   left: 47.5%;
+}
+
+.welcome {
+    text-align: center
+}
+
+#displaycards {
+    text-align:center;
+    margin: 0;
+    position: absolute;
+    left: 26.5%;
+}
+
+.h3 {
+    text-align:center
+}
+
+.mt-5 {
+    text-align:center;
+}
