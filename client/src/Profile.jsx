@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {useNavigate} from 'react-router-dom'
+import {Card} from 'semantic-ui-react'
 
 function Profile({onPlaySong, setRecording}){
 
@@ -39,20 +40,33 @@ function Profile({onPlaySong, setRecording}){
         songs.map(song => {
             if (song.user_id === Number(sessionStorage.getItem("user_id")))
                 return (
-                    <div className="songcards">
-                        <div class="ui cards">
-                            <div class="card">
-                                <div class="content">
-                                    <h3 class="header">{song.name}</h3>
-                                    <button 
-                                        onClick={()=>{deleteSong(song.id)}}
-                                    >
-                                        Delete Song
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                     </div>
+                    <Card>
+                        <Card.Content  className="songcard">
+                            <Card.Header>{song.name}</Card.Header>
+                            <Card.Description>
+                                Map Comments Here
+                            </Card.Description>
+                            <button 
+                                onClick={()=>{deleteSong(song.id)}}
+                            >
+                                Delete Song
+                            </button>
+                        </Card.Content>
+                    </Card>
+                    // <div className="songcards">
+                    //     <div class="ui cards">
+                    //         <div class="card">
+                    //             <div class="content">
+                    //                 <h3 class="header">{song.name}</h3>
+                                    // <button 
+                                    //     onClick={()=>{deleteSong(song.id)}}
+                                    // >
+                                    //     Delete Song
+                                    // </button>
+                    //             </div>
+                    //         </div>
+                    //     </div>
+                    //  </div>
                     // <div>
                     //     <button 
                     //         key={song.name} 
@@ -74,7 +88,9 @@ function Profile({onPlaySong, setRecording}){
 
     return(
         <>
-            <div>{displaySongs}</div>
+            <Card.Group itemPerRow={4}>
+                {displaySongs}
+            </Card.Group>
         </>
     )
 }
